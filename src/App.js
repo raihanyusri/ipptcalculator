@@ -42,6 +42,7 @@ class App extends React.Component {
           2.4 Timing
         </Typography>
         <PointsRunning ddValue={this.state.selectedDropDownValue} />
+        <div>hello</div>
       </div>
       <OverallPoints />
     </div>
