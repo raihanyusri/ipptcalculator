@@ -34,6 +34,7 @@ export default class PointsRunning extends React.Component  {
 
     handleSliderChange = (event, newValue) => {
       this.setState({ selectedSliderValue: newValue });
+      this.props.parentCallback(this.runningScore[typeof this.props.ddValue === "undefined" ? 0 : parseInt(this.props.ddValue)][Math.abs(59-(this.state.selectedSliderValue-510)/10)]);
     };
     
     handleInputChange = (event) => {

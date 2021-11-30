@@ -46,7 +46,7 @@ export default class Points extends React.Component  {
         <div>
             <Slider handleSliderChange={this.handleSliderChange} handleInputChange={this.handleInputChange} />
             <div>Age grp: {this.props.ddValue}</div> 
-            <div>Number of Push Ups: {this.state.selectedSliderValue}</div>
+            <div>Number of Sit Ups: {this.state.selectedSliderValue}</div>
             <div>Points: {this.puscore[typeof this.props.ddValue === "undefined" ? 0 : parseInt(this.props.ddValue)][this.state.selectedSliderValue-1]} </div>
         </div>
     )
