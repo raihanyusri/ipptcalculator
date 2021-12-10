@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
-import Input from '@material-ui/core/Input';
 
 const styles = theme => ({
   root: {
-    width: 300,
+    width: 400,
   },
   input: {
     width: 50,
   },
+});
+
+const theme = createMuiTheme({
+  direction: 'rtl',
 });
 
 class SliderRunning extends React.Component {
@@ -21,17 +24,6 @@ class SliderRunning extends React.Component {
       value: this.props.getSliderValue
     }
   }
-  // const classes = useStyles();
-  // const [value, setValue] = React.useState(30);
-
-  // handleSliderChange = (event, newValue) => {
-  //   this.setState(newValue);
-  //   console.log(this.convertMS(newValue));
-  // };
-
-  // handleInputChange = (event) => {
-  //   this.setState(event.target.value === '' ? '' : Number(event.target.value));
-  // };
 
   handleBlur = () => {
     if (this.state.value < 600) {
@@ -57,16 +49,18 @@ class SliderRunning extends React.Component {
     <div className={classes.root}>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs>
-          <Slider
-            value={this.state.value}
-            onChange={this.props.handleSliderChange}
-            aria-labelledby="input-slider"
-            defaultValue="700"
-            track="flipped"
-            step={10}
-            min={510}
-            max={1100}
-          />
+          <ThemeProvider theme={theme}>
+            <Slider
+              value={this.state.value}
+              onChange={this.props.handleSliderChange}
+              aria-labelledby="input-slider"
+              defaultValue="700"
+              track="inverted"
+              step={10}
+              min={510}
+              max={1100}
+            />
+          </ThemeProvider>
         </Grid>
         <Grid item>
           {/* <Input

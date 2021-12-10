@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
-import Input from '@material-ui/core/Input';
-import Dropdown from './Dropdown';
-import Pushups from '../data/Pushups';
-import AgeGroup from './AgeGroup';
 
 const styles = theme => ({
   root: {
-    width: 300,
+    width: 400,
   },
   input: {
     width: 50,
@@ -24,16 +20,6 @@ class SliderStatic extends React.Component {
       value: this.props.getSliderValue
     }
   }
-
-  // const [value, setValue] = useState(30);
-
-  // handleSliderChange = (event, newValue) => {
-  //   this.setState(newValue);
-  // };
-
-  // handleInputChange = (event) => {
-  //   this.setState(event.target.value === '' ? '' : Number(event.target.value));
-  // };
 
   handleBlur = () => {
     if (this.state.value < 0) {

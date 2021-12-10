@@ -1,5 +1,5 @@
-import React, { useState, setState } from 'react';
-import SliderRunning from './sliderrunning.js';
+import React from 'react';
+import SliderRunning from './SliderRunning.js';
 
 export default class PointsRunning extends React.Component  {
   constructor(props) {
@@ -34,7 +34,7 @@ export default class PointsRunning extends React.Component  {
 
     handleSliderChange = (event, newValue) => {
       this.setState({ selectedSliderValue: newValue });
-      this.props.parentCallback(this.runningScore[typeof this.props.ddValue === "undefined" ? 0 : parseInt(this.props.ddValue)][Math.abs(59-(this.state.selectedSliderValue-510)/10)]);
+      this.props.parentCallback(this.runningScore[typeof this.props.ddValue === "undefined" ? 0 : parseInt(this.props.ddValue-1)][Math.abs(59-(this.state.selectedSliderValue-510)/10)]);
     };
     
     handleInputChange = (event) => {
@@ -53,11 +53,12 @@ export default class PointsRunning extends React.Component  {
   
     render() {
     return (
-        <div>
-            <SliderRunning handleSliderChange={this.handleSliderChange} handleInputChange={this.handleInputChange} />
-            {/* <div>Age grp: {this.props.ddValue}</div>  */}
-            <div>Time: {this.convertMS(this.state.selectedSliderValue)} </div>
-            <div>Points: {this.runningScore[typeof this.props.ddValue === "undefined" ? 0 : parseInt(this.props.ddValue)][Math.abs(59-(this.state.selectedSliderValue-510)/10)]}</div>
+      <div>
+            <div style={{ display: 'flex'}}>
+              <div style={{ marginLeft:'193px' }}>Time: {this.convertMS(this.state.selectedSliderValue)}</div>
+              <div style={{ marginLeft:'70px', marginTop:'20px'}}>{this.runningScore[typeof this.props.ddValue === "undefined" ? 0 : parseInt(this.props.ddValue-1)][Math.abs(59-(this.state.selectedSliderValue-510)/10)]} </div>
+            </div>
+              <SliderRunning handleSliderChange={this.handleSliderChange} handleInputChange={this.handleInputChange} />
         </div>
     )
     }

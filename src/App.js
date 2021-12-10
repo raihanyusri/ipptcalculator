@@ -1,7 +1,6 @@
 import './App.css';
-import SliderRunning from './components/sliderrunning.js';
 import Dropdown from './components/Dropdown.js';
-import Points from './components/Points.js';
+import PointsPushUps from './components/PointsPushUps.js';
 import PointsSitUps from './components/PointsSitUps.js';
 import PointsRunning from './components/PointsRunning.js'
 import OverallPoints from './components/OverallPoints.js'
@@ -17,7 +16,7 @@ class App extends React.Component {
       sitUpsPoints: 16,
       runningPoints: 35,
       overallPoints: 67,
-      award: "PASS"
+      award: "PASS WITH INCENTIVE (+$200)"
     }
     this.handlePushUpsCallback = this.handlePushUpsCallback.bind(this)
     this.handleSitUpsCallback = this.handleSitUpsCallback.bind(this)
@@ -48,11 +47,13 @@ class App extends React.Component {
 
   handleAward() {
     if (this.state.overallPoints >= 85) {
-      this.setState({ award: "GOLD"})
+      this.setState({ award: "GOLD (+$500)"})
     } else if (this.state.overallPoints >= 75) {
-      this.setState({ award: "SILVER"})
+      this.setState({ award: "SILVER (+$300)"})
     } else if (this.state.overallPoints >= 61) {
-      this.setState({ award: "PASS"})
+      this.setState({ award: "PASS WITH INCENTIVE (+$200)"})
+    } else if (this.state.overallPoints >= 51) {
+      this.setState({ award: "PASS"}) 
     } else {
       this.setState({ award: "FAIL"})
     }
@@ -64,28 +65,42 @@ class App extends React.Component {
   
   render() {
   return (
-    <div>
-      <Dropdown handleSelect={this.handleDropdownSelect} />
-      <div style={{ padding: '20px' }}>
-        <Typography id="input-slider" gutterBottom style={{ fontWeight: 600, float: 'left' }}>
+    <div style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ padding: '50px', display: 'flex'}}>
+        <Dropdown handleSelect={this.handleDropdownSelect} />
+        <div style={{ padding: '25px', marginLeft: '260px'}}>Age Group: {this.state.selectedDropDownValue}</div>
+      </div>
+      <div style={{ marginLeft: '490px', marginBottom:'30px' }}>Points</div>
+      <div style={{ paddingLeft: '50px', paddingBottom: '20px' }}>
+        <Typography id="input-slider" gutterBottom style={{ fontWeight: 600, float: 'left', marginRight: '25px' }}>
           Push Ups
         </Typography>
-        <Points ddValue={this.state.selectedDropDownValue} parentCallback={this.handlePushUpsCallback} style={{ float: 'right' }} />
+        <PointsPushUps ddValue={this.state.selectedDropDownValue} parentCallback={this.handlePushUpsCallback}/>
       </div>
-      <div style={{ padding: '20px' }}> 
-        <Typography id="input-slider" gutterBottom style ={{ fontWeight: 600 }}>
+      <div style={{ paddingLeft: '50px', paddingBottom: '20px'  }}> 
+        <Typography id="input-slider" gutterBottom style={{ fontWeight: 600, float: 'left', marginRight: '25px' }}>
           Sit Ups
         </Typography>
-        <PointsSitUps ddValue={this.state.selectedDropDownValue} parentCallback={this.handleSitUpsCallback} style={{ float: 'right' }}/>
+        <PointsSitUps ddValue={this.state.selectedDropDownValue} parentCallback={this.handleSitUpsCallback}/>
       </div>
-      <div style={{ padding: '20px' }}> 
-        <Typography id="input-slider" gutterBottom style ={{ fontWeight: 600 }}> 
+      <div style={{ paddingLeft: '50px', paddingBottom: '20px'  }}> 
+        <Typography id="input-slider" gutterBottom style ={{ fontWeight: 600, float: 'left', marginRight: '25px' }}> 
           2.4 Timing
         </Typography>
         <PointsRunning ddValue={this.state.selectedDropDownValue} parentCallback={this.handleRunningCallback} style={{ float: 'right' }}/>
       </div>
-      <OverallPoints pushUps={this.state.pushUpsPoints} sitUps={this.state.sitUpsPoints} running={this.state.runningPoints}></OverallPoints>
-      <div>Award: {this.state.award}</div>
+      <div style={{ paddingLeft: '50px', display: 'flex'}}>
+        <div style={{ marginLeft: '300px'}}>Total Points</div>
+        <OverallPoints 
+          pushUps={this.state.pushUpsPoints} 
+          sitUps={this.state.sitUpsPoints} 
+          running={this.state.runningPoints}>
+        </OverallPoints>
+      </div>
+      <div style={{ display:'flex'}}> 
+        <div style={{ paddingLeft: '50px', marginLeft: '340px'}}>Award</div>
+        <div style={{ marginLeft: '63px' }}>{this.state.award}</div>
+      </div>
     </div>
   );
 

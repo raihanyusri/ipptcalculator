@@ -7,7 +7,7 @@ export default class OverallPoints extends React.Component  {
 
     render() {
         return (
-            <div>Overall Points = {this.props.pushUps + this.props.sitUps + this.props.running} </div>
+            <div style={{ marginLeft: '68px'}}>{this.props.pushUps + this.props.sitUps + this.props.running}</div>
         )
     }
 }
